@@ -62,7 +62,6 @@ echo starting stream_camera
 
 systemctl start stream_camera
 
-echo starting watchdog.conf
-
-systemctl start watchdog
+#echo starting watchdog.conf
+#systemctl start watchdog
 
