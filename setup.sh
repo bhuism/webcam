@@ -13,6 +13,13 @@ fi
 #exec 1<&- 2<&- 1<>${LOG_FILE} 2>&1
 #exec 1<>${LOG_FILE} 2>&1
 
+ping -n -q -W 5 -w 5 -c 1 8.8.4.4
+
+if [ $? != 0 ]; then
+	echo no network
+	exit 101
+fi
+
 echo installing cam.sh 
 
 curl -s https://raw.githubusercontent.com/bhuism/webcam/master/cam.sh -o /home/pi/cam.sh
@@ -35,5 +42,4 @@ echo enable stream_camera
 
 systemctl enable stream_camera
 
-
-
+curl -s https://raw.githubusercontent.com/bhuism/webcam/master/watchdig.conf -o /etc/watchdog.conf
