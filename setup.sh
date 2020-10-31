@@ -42,4 +42,17 @@ echo enable stream_camera
 
 systemctl enable stream_camera
 
-curl -s https://raw.githubusercontent.com/bhuism/webcam/master/watchdig.conf -o /etc/watchdog.conf
+echo enable watchdog
+
+apt install -y watchdog
+
+systemctl enable watchdog
+
+echo installing watchdog.conf
+
+curl -s https://raw.githubusercontent.com/bhuism/webcam/master/watchdog.conf -o /etc/watchdog.conf
+
+echo restarting watchdog.conf
+
+systemctl restart watchdog
+
