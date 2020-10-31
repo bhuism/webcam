@@ -20,6 +20,10 @@ if [ $? != 0 ]; then
 	exit 101
 fi
 
+echo updating apt
+
+apt update
+
 echo installing cam.sh 
 
 curl -s https://raw.githubusercontent.com/bhuism/webcam/master/cam.sh -o /home/pi/cam.sh
@@ -42,26 +46,22 @@ echo enable stream_camera
 
 systemctl enable stream_camera
 
-echo enable watchdog
+echo install ffmpeg watchdog nginx
 
-apt install -y watchdog
-
-systemctl enable watchdog
+apt install -y ffmpeg watchdog nginx
 
 echo installing watchdog.conf
 
 curl -s https://raw.githubusercontent.com/bhuism/webcam/master/watchdog.conf -o /etc/watchdog.conf
 
+systemctl restart watchdog
+
 echo installing index.html
 
 curl -s https://raw.githubusercontent.com/bhuism/webcam/master/index.html -o /var/www/html/index.html
 
-ln -s /dev/shm/streaming /var/www/html/
+ln -sf /dev/shm/streaming /var/www/html/
 
 echo starting stream_camera
 
 systemctl start stream_camera
-
-#echo starting watchdog.conf
-#systemctl start watchdog
-
