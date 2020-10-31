@@ -5,6 +5,6 @@
 Put this in your /etc/rc.local:
 
 ```
-curl -s https://raw.githubusercontent.com/bhuism/webcam/master/setup.sh | sudo sh
+curl -s https://raw.githubusercontent.com/bhuism/webcam/master/setup.sh | sh
 ```
 
