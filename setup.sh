@@ -52,7 +52,17 @@ echo installing watchdog.conf
 
 curl -s https://raw.githubusercontent.com/bhuism/webcam/master/watchdog.conf -o /etc/watchdog.conf
 
-echo restarting watchdog.conf
+echo installing index.html
 
-systemctl restart watchdog
+curl -s https://raw.githubusercontent.com/bhuism/webcam/master/index.html -o /var/www/html/index.html
+
+ln -s /dev/shm/streaming /var/www/html/
+
+echo starting stream_camera
+
+systemctl start stream_camera
+
+echo starting watchdog.conf
+
+systemctl start watchdog
 
