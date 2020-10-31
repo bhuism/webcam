@@ -5,7 +5,7 @@ if [ `id -u` != "0" ] ; then
    exit 100
 fi
 
-systemctl start stream_camera &> /dev/null
+systemctl stop stream_camera &> /dev/null
 
 echo updating apt
 
