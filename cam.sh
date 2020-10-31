@@ -27,8 +27,8 @@ ffmpeg	-nostdin -loglevel warning \
  	-b:v 4M  -maxrate:v 6M -bufsize 4M \
 	-c:v ${ENCODER} \
 	-f dash \
-	-seg_duration 2 \
+	-seg_duration 1 \
 	-media_seg_name 'slice-'"${FILENAME}"'-$RepresentationID$-$Number%08d$.m4s' \
-	-window_size 10 \
+	-window_size 15 \
 	-hls_playlist 1 \
 	$DIR/manifest.mpd
