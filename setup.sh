@@ -6,10 +6,10 @@ if [ `id -u` != "0" ] ; then
 fi
 
 systemctl stop stream_camera &> /dev/null
+systemctl stop watchdig &> /dev/null
 
-echo updating apt
-
-apt update
+#echo updating apt
+#apt update
 
 echo installing cam.sh 
 
