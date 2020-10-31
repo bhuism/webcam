@@ -8,6 +8,8 @@ Wants=time-sync.target
 Restart=always
 RestartSec=20s
 ExecStart=/home/pi/cam.sh
+User=pi
+Group=pi
 
 [Install]
 WantedBy=multi-user.target
