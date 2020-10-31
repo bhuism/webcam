@@ -1,0 +1,13 @@
+# {systemd_file}
+[Unit]
+Description=Camera Streaming Service
+After=network.target rc-local.service
+Wants=time-sync.target
+
+[Service]
+Restart=always
+RestartSec=20s
+ExecStart=/home/pi/cam.sh
+
+[Install]
+WantedBy=multi-user.target
