@@ -5,21 +5,6 @@ if [ `id -u` != "0" ] ; then
    exit 100
 fi
 
-#LOG_FILE=/tmp/$0.log
-
-#rm -Rf ${LOG_FILE}
-#touch LOGFILE;
-
-#exec 1<&- 2<&- 1<>${LOG_FILE} 2>&1
-#exec 1<>${LOG_FILE} 2>&1
-
-ping -n -q -W 5 -w 5 -c 1 8.8.4.4
-
-if [ $? != 0 ]; then
-	echo no network
-	exit 101
-fi
-
 echo updating apt
 
 apt update
