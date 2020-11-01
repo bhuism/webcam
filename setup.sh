@@ -8,7 +8,7 @@ fi
 CURL=curl
 
 systemctl stop stream_camera &> /dev/null
-systemctl stop watchdig &> /dev/null
+systemctl stop watchdog &> /dev/null
 
 #echo updating apt
 #apt update
