@@ -6,11 +6,11 @@ FRAMERATE=25
 GOP=$(($FRAMERATE * 1))
 FILENAME=stream-me-baby
 
-INPUTFORMAT=h264
-#INPUTFORMAT=yuyv422
+#INPUTFORMAT=h264
+INPUTFORMAT=yuyv422
 
-ENCODER=copy
-#ENCODER=h264_omx
+#ENCODER=copy
+ENCODER=h264_omx
 
 trap "rm -Rf $DIR" EXIT
 
@@ -24,6 +24,9 @@ curl -s https://raw.githubusercontent.com/bhuism/webcam/master/html/dash.html -o
 
 ffmpeg	-nostdin -hide_banner -loglevel warning \
 	-f video4linux2 -input_format ${INPUTFORMAT} -video_size ${RESOLUTION} -framerate ${FRAMERATE} -i /dev/video0 \
+	-vf "settb=AVTB \
+		,setpts='trunc(PTS/1K)*1K+st(1,trunc(RTCTIME/1K))-1K*trunc(ld(1)/1K)' \
+		,drawtext=text='%{localtime}.%{eif\:1M*t-1K*trunc(t*1K)\:d\:3}:fontsize=20:fontcolor=wheat:x=(w-tw)/2:y=16'" \
  	-b:v 4M  -maxrate:v 6M -bufsize 4M \
 	-c:v ${ENCODER} \
 	-f dash \
@@ -31,5 +34,6 @@ ffmpeg	-nostdin -hide_banner -loglevel warning \
 	-media_seg_name 'slice-'"${FILENAME}"'-$RepresentationID$-$Number%08d$.m4s' \
 	-window_size 15 \
 	-hls_playlist 1 \
+	-use_template 1 -use_timeline 1 -index_correction 1 \
 	-utc_timing_url /iso.html \
 	$DIR/manifest.mpd
