@@ -10,7 +10,7 @@ if [ ${HOSTTYPE} != "arm" ] ; then
    exit 101
 fi
 
-if [ ! -f "/dev/video0" ]; then
+if [ ! -c /dev/video0 ] ; then
     echo "No camera device /dev/video0" 1>&2
     exit 102
 fi
