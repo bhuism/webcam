@@ -5,6 +5,8 @@ if [ `id -u` != "0" ] ; then
    exit 100
 fi
 
+CURL=curl
+
 systemctl stop stream_camera &> /dev/null
 systemctl stop watchdig &> /dev/null
 
@@ -13,13 +15,13 @@ systemctl stop watchdig &> /dev/null
 
 echo installing cam.sh 
 
-curl -s https://raw.githubusercontent.com/bhuism/webcam/master/cam.sh -o /home/pi/cam.sh
+${CURL} -s https://raw.githubusercontent.com/bhuism/webcam/master/cam.sh -o /home/pi/cam.sh
 
 chmod +x /home/pi/cam.sh
 
 echo installing stream_camera.service
 
-curl -s https://raw.githubusercontent.com/bhuism/webcam/master/stream_camera.service -o /etc/systemd/system/stream_camera.service
+${CURL} -s https://raw.githubusercontent.com/bhuism/webcam/master/stream_camera.service -o /etc/systemd/system/stream_camera.service
 
 echo reloading systemd
 
@@ -39,13 +41,13 @@ apt install -y ffmpeg watchdog nginx
 
 echo installing watchdog.conf
 
-curl -s https://raw.githubusercontent.com/bhuism/webcam/master/watchdog.conf -o /etc/watchdog.conf
+${CURL} -s https://raw.githubusercontent.com/bhuism/webcam/master/watchdog.conf -o /etc/watchdog.conf
 
 systemctl restart watchdog
 
 echo installing index.html
 
-curl -s https://raw.githubusercontent.com/bhuism/webcam/master/index.html -o /var/www/html/index.html
+${CURL} -s https://raw.githubusercontent.com/bhuism/webcam/master/index.html -o /var/www/html/index.html
 
 ln -sf /dev/shm/streaming /var/www/html/
 
