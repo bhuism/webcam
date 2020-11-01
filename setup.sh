@@ -5,8 +5,14 @@ if [ `id -u` != "0" ] ; then
    exit 100
 fi
 
+if [ ${HOSTTYPE} != "arm" ] ; then
+   echo No arm architecture 1>&2
+   exit 101
+fi
+
 if [ ! -f "/dev/video0" ]; then
     echo "No camera device /dev/video0" 1>&2
+    exit 102
 fi
 
 CURL=(-s -H "Cache-Control: no-cache")
