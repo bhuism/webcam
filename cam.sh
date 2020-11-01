@@ -10,7 +10,7 @@ INPUTFORMAT=h264
 #INPUTFORMAT=yuyv422
 
 ENCODER=copy
-#ECODER=h264_omx
+#ENCODER=h264_omx
 
 trap "rm -Rf $DIR" EXIT
 

@@ -31,6 +31,7 @@ systemctl stop stream_camera &> /dev/null
 echo installing cam.sh 
 
 curl "${CURL[@]}" https://raw.githubusercontent.com/bhuism/webcam/master/cam.sh -o /home/pi/cam.sh
+chown pi:pi /home/pi/cam.sh
 
 chmod +x /home/pi/cam.sh
 
