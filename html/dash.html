@@ -32,7 +32,7 @@
 
     var player;
 
-    var delay = 10.0;
+    var delay = 5.0;
 
     function init() {
         var video = document.querySelector("video");
@@ -40,12 +40,12 @@
         player.initialize(video, "manifest.mpd", true);
         player.updateSettings({
             'streaming': {
-                'liveDelayFragmentCount': 2,
-                // 'liveDelay': delay,
-                // 'liveCatchUpMinDrift': 0.1,
-                // 'liveCatchUpPlaybackRate': 0.5,
-                // 'liveCatchupLatencyThreshold': 30.0,
-                // 'lowLatencyEnabled': true,
+                //'liveDelayFragmentCount': 2,
+                'liveDelay': delay,
+                'liveCatchUpMinDrift': 0.1,
+                'liveCatchUpPlaybackRate': 0.2,
+                'liveCatchupLatencyThreshold': 60.0,
+                'lowLatencyEnabled': true,
 
             }
         });
