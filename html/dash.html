@@ -12,9 +12,18 @@
     </div>
     <div>
         <table>
-            <tr><td>Buffer length:</td><td id="bufferstat"></td></tr>
-            <tr><td>Offset error: </td><td id="behindstat"></td></tr>
-            <tr><td>Playback speed: </td><td id="playbackrate"></td></tr>
+            <tr>
+                <td>Buffer length:</td>
+                <td id="bufferstat"></td>
+            </tr>
+            <tr>
+                <td>Offset error:</td>
+                <td id="behindstat"></td>
+            </tr>
+            <tr>
+                <td>Playback speed:</td>
+                <td id="playbackrate"></td>
+            </tr>
         </table>
     </div>
 </div>
@@ -22,43 +31,41 @@
 <script>
 
     var player;
-    
+
     var delay = 10.0;
 
-    function init()
-    {
+    function init() {
         var video = document.querySelector("video");
         player = dashjs.MediaPlayer().create();
         player.initialize(video, "manifest.mpd", true);
         player.updateSettings({
             'streaming': {
-                 'liveDelay': delay,
-                 'liveCatchUpMinDrift': 0.1,
-                 'liveCatchUpPlaybackRate': 0.5,
-                 'liveCatchupLatencyThreshold': 30.0,
-                 'lowLatencyEnabled': true,
-//                 'liveDelayFragmentCount': 4,
-                
+                'liveDelayFragmentCount': 2,
+                // 'liveDelay': delay,
+                // 'liveCatchUpMinDrift': 0.1,
+                // 'liveCatchUpPlaybackRate': 0.5,
+                // 'liveCatchupLatencyThreshold': 30.0,
+                // 'lowLatencyEnabled': true,
+
             }
         });
-        
+
         setInterval(updateStats, 1000)
-        
+
     }
 
-    function updateStats()
-    {
+    function updateStats() {
         var d = new Date();
-        document.querySelector("#bufferstat").innerHTML = "" + Math.round(player.getBufferLength() * 10) / 10  + "s";
+        document.querySelector("#bufferstat").innerHTML = "" + Math.round(player.getBufferLength() * 10) / 10 + "s";
         document.querySelector("#behindstat").innerHTML = Math.round((((d.getTime() / 1000) - Number(player.timeAsUTC()))) * 10) / 10 + "s target=" + delay;
-        document.querySelector("#playbackrate").innerHTML = "" + (Math.round(player.getPlaybackRate() * 1000) /  10) + "%";
-        
+        document.querySelector("#playbackrate").innerHTML = "" + (Math.round(player.getPlaybackRate() * 1000) / 10) + "%";
+
     }
 </script>
 <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                init();
-            });
+    document.addEventListener("DOMContentLoaded", function () {
+        init();
+    });
 </script>
 </body>
 </html>
