@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ `id -u` != "0" ] ; then
    echo "You must be root to do this." 1>&2
    exit 100
 fi
 
-CURL=curl
+CURL=(-s -H "Cache-Control: no-cache")
 
 echo stopping watchdog
 
@@ -20,13 +20,13 @@ systemctl stop stream_camera &> /dev/null
 
 echo installing cam.sh 
 
-${CURL} -s https://raw.githubusercontent.com/bhuism/webcam/master/cam.sh -o /home/pi/cam.sh
+curl "${CURL[@]}" https://raw.githubusercontent.com/bhuism/webcam/master/cam.sh -o /home/pi/cam.sh
 
 chmod +x /home/pi/cam.sh
 
 echo installing stream_camera.service
 
-${CURL} -s https://raw.githubusercontent.com/bhuism/webcam/master/stream_camera.service -o /etc/systemd/system/stream_camera.service
+curl "${CURL[@]}" https://raw.githubusercontent.com/bhuism/webcam/master/stream_camera.service -o /etc/systemd/system/stream_camera.service
 
 echo reloading systemd
 
@@ -46,13 +46,13 @@ apt install -y ffmpeg watchdog nginx
 
 echo installing watchdog.conf
 
-${CURL} -s https://raw.githubusercontent.com/bhuism/webcam/master/watchdog.conf -o /etc/watchdog.conf
+curl "${CURL[@]}" https://raw.githubusercontent.com/bhuism/webcam/master/watchdog.conf -o /etc/watchdog.conf
 
 systemctl restart watchdog
 
 echo installing index.html
 
-${CURL} -s https://raw.githubusercontent.com/bhuism/webcam/master/index.html -o /var/www/html/index.html
+curl "${CURL[@]}" https://raw.githubusercontent.com/bhuism/webcam/master/index.html -o /var/www/html/index.html
 
 ln -sf /dev/shm/streaming /var/www/html/
 
