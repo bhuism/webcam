@@ -38,6 +38,10 @@
         var video = document.querySelector("video");
         player = dashjs.MediaPlayer().create();
         player.initialize(video, "manifest.mpd", true);
+        player.on("error", function(e) {
+            console.error("error: " + JSON.stringify(e));
+            location.reload();
+        });
         player.updateSettings({
             'streaming': {
                 'liveDelayFragmentCount': 2,
