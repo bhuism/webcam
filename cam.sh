@@ -32,7 +32,7 @@ ffmpeg	-nostdin -hide_banner -loglevel warning \
 	-f dash \
 	-seg_duration 1 \
 	-media_seg_name 'slice-'"${FILENAME}"'-$RepresentationID$-$Number%08d$.m4s' \
-	-window_size 15 \
+	-window_size 5 \
 	-hls_playlist 1 \
 	-use_template 1 -use_timeline 1 -index_correction 1 \
 	-utc_timing_url /iso.html \
