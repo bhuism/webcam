@@ -55,7 +55,8 @@ echo install ffmpeg watchdog nginx
 
 apt install -y ffmpeg watchdog nginx
 
-echo "ssi on;" > /etc/nginx/conf.d/ssi.conf
+echo configure nginx
+
 curl "${CURL[@]}" https://raw.githubusercontent.com/bhuism/webcam/master/default -o /etc/nginx/sites-available/default
 
 systemctl reload nginx
