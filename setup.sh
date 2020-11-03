@@ -72,4 +72,6 @@ echo starting stream_camera
 
 systemctl start stream_camera
 
+echo restarting watchdog
+
 systemctl restart watchdog
