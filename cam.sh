@@ -27,8 +27,8 @@ ffmpeg	-nostdin -hide_banner -loglevel warning -y \
         -f hls \
         -hls_flags delete_segments \
         -hls_allow_cache 0 \
-        -hls_time 1 \
+        -hls_time 2 \
         -hls_segment_type fmp4 \
-        -hls_list_size 5 \
+        -hls_list_size 10 \
         -hls_start_number_source datetime \
         $DIR/master.m3u8
