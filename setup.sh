@@ -61,9 +61,12 @@ curl "${CURL[@]}" https://raw.githubusercontent.com/bhuism/webcam/master/watchdo
 
 systemctl restart watchdog
 
-echo installing index.html
+echo installing htmls
 
-curl "${CURL[@]}" https://raw.githubusercontent.com/bhuism/webcam/master/index.html -o /var/www/html/index.html
+HTMLDIR=/var/www/html
+
+curl "${CURL[@]}"  https://raw.githubusercontent.com/bhuism/webcam/master/index.html -o ${HTMLDIR}/index.html \
+	https://raw.githubusercontent.com/bhuism/webcam/master/style.css -o ${HTMLDIR}/style.css
 
 ln -sf /dev/shm/streaming /var/www/html/
 
