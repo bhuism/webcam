@@ -1,4 +1,3 @@
-    I A  cam.sh (Modified)(sh)                                                                                                                 Row 34   Col 1
 #!/bin/sh
 
 DIR=/dev/shm/streaming
