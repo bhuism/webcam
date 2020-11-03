@@ -55,12 +55,6 @@ echo install ffmpeg watchdog nginx
 
 apt install -y ffmpeg watchdog nginx
 
-echo configure nginx
-
-curl "${CURL[@]}" https://raw.githubusercontent.com/bhuism/webcam/master/default -o /etc/nginx/sites-available/default
-
-systemctl reload nginx
-
 echo installing watchdog.conf
 
 curl "${CURL[@]}" https://raw.githubusercontent.com/bhuism/webcam/master/watchdog.conf -o /etc/watchdog.conf
@@ -70,7 +64,6 @@ systemctl restart watchdog
 echo installing index.html
 
 curl "${CURL[@]}" https://raw.githubusercontent.com/bhuism/webcam/master/index.html -o /var/www/html/index.html
-curl "${CURL[@]}" https://raw.githubusercontent.com/bhuism/webcam/master/iso.html -o /var/www/html/iso.html
 
 ln -sf /dev/shm/streaming /var/www/html/
 
