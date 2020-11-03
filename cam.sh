@@ -52,4 +52,4 @@ ffmpeg	-nostdin -hide_banner -loglevel warning -y \
   -hls_time 1 \
   -hls_list_size 5 \
   -hls_start_number_source datetime \
-  "$DIR/index.m3u8"
+  "$DIR/master.m3u8"
