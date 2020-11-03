@@ -29,10 +29,11 @@ ffmpeg	-nostdin -hide_banner -loglevel warning -y \
 		,drawtext=text='%{localtime}.%{eif\:1M*t-1K*trunc(t*1K)\:d\:3}:fontsize=20:fontcolor=wheat:x=(w-tw)/2:y=16'" \
  	-b:v 4M  -maxrate:v 6M -bufsize 4M \
 	-c:v ${ENCODER} \
-  -f hls \
-  -hls_flags delete_segments \
-  -hls_allow_cache 0 \
-  -hls_time 1 \
-  -hls_list_size 5 \
-  -hls_start_number_source datetime \
-  "$DIR/master.m3u8"
+        -f hls \
+        -hls_flags delete_segments \
+        -hls_allow_cache 0 \
+        -hls_time 1 \
+        -hls_segment_type fmp4 \
+        -hls_list_size 5 \
+        -hls_start_number_source datetime \
+        $DIR/master.m3u8
