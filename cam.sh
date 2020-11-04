@@ -22,7 +22,7 @@ ffmpeg -nostdin -hide_banner -loglevel warning -y \
   -vf "settb=AVTB \
 		,setpts='trunc(PTS/1K)*1K+st(1,trunc(RTCTIME/1K))-1K*trunc(ld(1)/1K)' \
 		,drawtext=text='%{localtime}.%{eif\:1M*t-1K*trunc(t*1K)\:d\:3}:fontsize=20:fontcolor=wheat:x=(w-tw)/2:y=16'" \
-  -b:v 4M -maxrate:v 6M -bufsize 4M \
+  -b:v 8M -maxrate:v 12M -bufsize 8M \
   -c:v ${ENCODER} \
   -f hls \
   -hls_flags delete_segments+temp_file \
