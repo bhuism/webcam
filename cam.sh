@@ -2,8 +2,8 @@
 
 DIR=/dev/shm/streaming
 RESOLUTION=hd720
-FRAMERATE=25
-GOP=$(($FRAMERATE * 1))
+FRAMERATE=15
+GOP=$(($FRAMERATE * 2))
 FILENAME=stream-me-baby
 
 #INPUTFORMAT=h264
