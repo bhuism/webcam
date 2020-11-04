@@ -20,11 +20,12 @@ rm -Rf $DIR
 mkdir $DIR
 
 ffmpeg -nostdin -hide_banner -loglevel warning -y \
+  -f lavfi -i anullsrc \
   -f video4linux2 -input_format ${INPUTFORMAT} -video_size ${RESOLUTION} -framerate ${FRAMERATE} -i /dev/video0 \
   -vf "settb=AVTB \
 		,setpts='trunc(PTS/1K)*1K+st(1,trunc(RTCTIME/1K))-1K*trunc(ld(1)/1K)' \
 		,drawtext=text='%{localtime}.%{eif\:1M*t-1K*trunc(t*1K)\:d\:3}:fontsize=20:fontcolor=wheat:x=(w-tw)/2:y=16'" \
-  -b:v ${BITRATE} -maxrate:v ${BITRATE} -bufsize ${BITRATE} -g ${GOP} \
+  -b:v ${BITRATE} -maxrate:v ${BITRATE} -bufsize ${BITRATE} -g ${GOP} -profile:v high \
   -c:v ${ENCODER} \
   -f hls \
   -hls_flags delete_segments+temp_file \
