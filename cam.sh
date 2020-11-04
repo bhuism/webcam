@@ -1,7 +1,7 @@
 #!/bin/sh
 
 DIR=/dev/shm/streaming
-RESOLUTION=hd720
+RESOLUTION=1360x768
 FRAMERATE=15
 GOP=$(($FRAMERATE * 2))
 FILENAME=stream-me-baby
