@@ -53,7 +53,7 @@ systemctl enable stream_camera
 
 echo install ffmpeg watchdog nginx
 
-apt install -y ffmpeg watchdog nginx unattended-upgrades 
+apt install -y ffmpeg watchdog nginx unattended-upgrades ntp
 
 echo installing watchdog.conf
 
