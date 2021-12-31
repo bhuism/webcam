@@ -70,7 +70,7 @@ ln -sf /dev/shm/streaming /var/www/html/
 
 echo starting stream_camera
 
-systemctl start stream_camera
+systemctl restart stream_camera
 
 echo restarting watchdog
 
