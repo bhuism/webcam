@@ -2,7 +2,7 @@
 
 DIR=/dev/shm/streaming
 RESOLUTION=hd720
-FRAMERATE=15
+FRAMERATE=24
 GOP=$(($FRAMERATE * 2))
 FILENAME=stream-me-baby
 
@@ -26,7 +26,7 @@ ffmpeg -nostdin -hide_banner -loglevel warning -y \
   -b:v ${BITRATE} -maxrate:v ${BITRATE} -bufsize ${BITRATE} -g ${GOP} -profile:v high \
   -c:v ${ENCODER} \
   -f hls \
-  -hls_flags delete_segments+temp_file \
+  -hls_flags delete_segments+temp_file+independent_segments \
   -hls_allow_cache 0 \
   -hls_segment_type fmp4 \
   -hls_start_number_source datetime \
