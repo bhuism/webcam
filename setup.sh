@@ -12,7 +12,7 @@ fi
 
 raspi-config nonint do_camera 0
 raspi-config nonint do_memory_split 256
-
+systemctl disable bluetooth
 
 if [ ! -c /dev/video0 ]; then
   echo "No camera device /dev/video0" 1>&2
