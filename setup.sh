@@ -33,8 +33,8 @@ systemctl stop stream_camera &>/dev/null
 
 echo updating apt
 
-apt update
-apt full-upgrade
+apt update -y
+apt full-upgrade -y
 
 echo add user pi
 
