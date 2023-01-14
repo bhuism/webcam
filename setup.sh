@@ -4,7 +4,7 @@ if [ $(id -u) != "0" ]; then
   echo "You must be root to do this." 1>&2
   exit 100
 fi
-if [ ${HOSTTYPE} != "arm" ] && [${HOSTTYPE} != "aarch64" ] ; then
+if [ ${HOSTTYPE} != "arm" ] && [ ${HOSTTYPE} != "aarch64" ] ; then
   echo No arm architecture 1>&2
   exit 101
 fi
