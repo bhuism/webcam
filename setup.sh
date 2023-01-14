@@ -1,4 +1,4 @@
-#!/bin/bash
+7#!/bin/bash
 
 if [ $(id -u) != "0" ]; then
   echo "You must be root to do this." 1>&2
@@ -11,10 +11,10 @@ fi
 
 raspi-config nonint do_camera 0
 raspi-config nonint do_memory_split 256
+
 systemctl disable hciuart.service
 systemctl disable bluealsa.service
 systemctl disable bluetooth.service
-
 
 if [ ! -c /dev/video0 ]; then
   echo "No camera device /dev/video0" 1>&2
@@ -24,12 +24,10 @@ fi
 CURL=(-s -H "Cache-Control: no-cache")
 
 echo stopping watchdog
-
-systemctl stop watchdog &>/dev/null
+systemctl stop watchdog
 
 echo stopping stream_camera
-
-systemctl stop stream_camera &>/dev/null
+systemctl stop stream_camera
 
 echo updating apt
 
@@ -55,15 +53,12 @@ echo installing stream_camera.service
 curl "${CURL[@]}" https://raw.githubusercontent.com/bhuism/webcam/master/stream_camera.service -o /etc/systemd/system/stream_camera.service
 
 echo reloading systemd
-
 systemctl daemon-reload
 
 echo enable time-wait-sync
-
 systemctl enable systemd-time-wait-sync
 
 echo enable stream_camera
-
 systemctl enable stream_camera
 
 echo install ffmpeg watchdog nginx
@@ -84,10 +79,7 @@ curl "${CURL[@]}" https://raw.githubusercontent.com/bhuism/webcam/master/index.h
 mkdir -p /dev/shm/streaming
 ln -sf /dev/shm/streaming /var/www/html/
 
-echo starting stream_camera
+echo enable watchdog
+systemctl enable watchdog
 
-systemctl restart stream_camera
-
-echo restarting watchdog
-
-systemctl restart watchdog
+shutdown -r +1
