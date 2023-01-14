@@ -31,8 +31,14 @@ echo stopping stream_camera
 
 systemctl stop stream_camera &>/dev/null
 
-#echo updating apt
-#apt update
+echo updating apt
+
+apt update
+apt full-upgrade
+
+echo add user pi
+
+useradd -m pi
 
 echo installing cam.sh
 
