@@ -39,6 +39,9 @@ apt full-upgrade -y
 echo add user pi
 
 useradd -m pi
+for i in video dialout cdrom audio plugdev games users render netdev spi i2c gpio ; do
+usermod -a -G $i pi
+done
 
 echo installing cam.sh
 
