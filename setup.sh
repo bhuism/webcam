@@ -76,7 +76,6 @@ HTMLDIR=/var/www/html
 curl "${CURL[@]}" https://raw.githubusercontent.com/bhuism/webcam/master/index.html -o ${HTMLDIR}/index.html \
   https://raw.githubusercontent.com/bhuism/webcam/master/style.css -o ${HTMLDIR}/style.css
 
-mkdir -p /dev/shm/streaming
 ln -sf /dev/shm/streaming /var/www/html/
 
 echo enable watchdog
