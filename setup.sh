@@ -10,7 +10,7 @@ if [ ${HOSTTYPE} != "arm" ] && [ ${HOSTTYPE} != "aarch64" ] ; then
 fi
 
 raspi-config nonint do_camera 0
-raspi-config nonint do_memory_split 256
+raspi-config nonint do_memory_split 128
 
 systemctl disable hciuart.service
 systemctl disable bluealsa.service
