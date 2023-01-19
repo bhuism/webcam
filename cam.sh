@@ -40,12 +40,23 @@ mkdir $DIR
 #  $DIR/master.m3u8
 
 
-libcamera-vid -t 0 --codec yuv420 --width 1920 --height 1080 -o - | \
- ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i - -y -vcodec h264_omx \
+#libcamera-vid -t 0 --codec yuv420 --width 1920 --height 1080 -o - | \
+# ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i - -y -vcodec h264_omx \
+#  -f hls \
+#  -hls_flags delete_segments+temp_file+independent_segments \
+#  -hls_list_size 3 \
+#  -hls_segment_type fmp4 \
+#  -hls_start_number_source datetime \
+#  $DIR/master.m3u8
+
+
+
+
+libcamera-vid --framerate 24 -t 0 --codec h264 --width 1920 --height 1080 -o - | \
+ ffmpeg -i - -framerate 24 -probesize 100M -y -loglevel warning -vcodec copy \
   -f hls \
   -hls_flags delete_segments+temp_file+independent_segments \
   -hls_list_size 3 \
   -hls_segment_type fmp4 \
   -hls_start_number_source datetime \
   $DIR/master.m3u8
-
