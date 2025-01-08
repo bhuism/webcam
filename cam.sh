@@ -2,7 +2,7 @@
 
 DIR=/dev/shm/streaming
 RESOLUTION=hd720
-FRAMERATE=25
+FRAMERATE=10
 GOP=$(($FRAMERATE * 2))
 
 #INPUTFORMAT=h264
@@ -52,8 +52,8 @@ mkdir $DIR
 
 
 
-libcamera-vid --framerate 24 -t 0 --codec h264 --width 1920 --height 1080 -o - | \
- ffmpeg -i - -framerate 24 -probesize 100M -y -loglevel warning -vcodec copy \
+rpicam-vid --framerate $FRAMERATE -t 0 --codec h264 --width 1920 --height 1080 -o - | \
+ ffmpeg -i - -framerate $FRAMERATE -probesize 100M -y -loglevel warning -vcodec copy \
   -f hls \
   -hls_flags delete_segments+temp_file+independent_segments \
   -hls_list_size 3 \
