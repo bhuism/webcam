@@ -52,7 +52,7 @@ mkdir $DIR
 
 
 
-rpicam-vid --framerate $FRAMERATE -t 0 --codec h264 --width 1920 --height 1080 -o - | \
+rpicam-vid -n --framerate $FRAMERATE -t 0 --codec h264 --width 1920 --height 1080 -o - | \
  ffmpeg -i - -framerate $FRAMERATE -probesize 100M -y -loglevel warning -vcodec copy \
   -f hls \
   -hls_flags delete_segments+temp_file+independent_segments \
